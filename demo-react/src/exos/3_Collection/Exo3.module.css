@@ -1,0 +1,39 @@
+.card {
+    display : flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items : flex-start;
+    width: 25%;
+    aspect-ratio: 3/4;
+    padding: 2rem;
+    gap : 2rem;
+    background-color: rgb(3, 3, 3);
+    border-radius: 1.5rem;
+    margin: 2rem;
+    color: white;
+
+    .card:hover {
+        width: 30%;
+    }
+
+        img {
+            border-radius : 1rem;
+        }
+
+    .info {
+        display: flex;
+        flex-direction : column;
+        justify-content: center;
+        align-items: flex-start;
+        gap : 1rem;
+
+        .list {
+            .heart {
+                background-color: red;
+                padding: 1rem;
+                border-radius: 1rem;
+                color : white;
+            }
+        }
+    }
+}
