@@ -74,7 +74,9 @@ export const Exo4 = () => {
         // tu connais l'id du product sur lequel on vient de clicker, tu peux donc récupérer le prix
         // tu connais aussi la valeur à ajouter -1 soit +1
 
-        // setTotal((prev) => prev + product.price * value);  
+        // Dans le tableau products, on cherche l'élément (ici appelé prod, mais pourrait s'appeler Jean-Bernard) dont l'id correspond à l'id qui a été envoyé en paramètre dans notre fonction crement => on en fait la variable product :
+        const product = products.find(prod=> prod.id === id);
+        setTotal((prev) => prev + product.price * value);  
     }
 
     // Fonction pour savoir quel count utiliser :
