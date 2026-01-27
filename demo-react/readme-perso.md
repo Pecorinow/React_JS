@@ -164,4 +164,55 @@ _Exemple : Demo2.jsx :_
         )
     }
     ```
+## Les collections : map() et key :
+Pour afficher plusieurs fois la même chose mais n'acrire qu'une seule fois le code, on va utiliser une "boucle"
+Cette boucle sera la méthode .map() des tableaux puisqu'elle permet de transformer chaque élément du tableau en autre chose.
+On va donc s'en servir pour transformer chaque élément du tableau en JSX.
 
+📢 Quand on affiche des collections (lists), on va devoir ajouter une clef unique sur chaque élément construit pour des questions d'optimisation. Cette clef doit être associée à une valeur unique (idéalement un id, mais si on n'en a pas, l'indice dans le tableau fait l'affaire). Cela se fait avec un **attribut key={valeur}**.
+Comme ça, si jamais on met par exemple à jour l'un des éléments du tableau, le mapping ne se refait pas sur tous les éléments mais seulement sur celui-là.
+
+Quand on a beaucou de HTML à afficher dans notre map, on va devoir en faire un composant dans un autre fichier, qu'on importera dand le premier. (Voir Demo3.)
+
+Écriture : 
+```jsx
+{tableau.map((elementDuTableau) => (
+    <NouvelElementACreer key={elementDuTableau.id}>
+        {/* Contenu utilisant elementDuTableau (elementDuTableau.name, .price, .hobbies...) */}
+    </NouvelElementACreer>
+))}
+```
+Ici :
+- elementDuTableau = élément original du tableau à partir duquel on crée un élément JSX.
+- NouvelElementACreer = nouvel élément JSX à créer à partir du tableau (une <div>, un <p>...).
+
+Les points importants :
+
+✅ tableau.map((elementDuTableau) => ...) -> tu itères sur chaque élément
+✅ key={elementDuTableau.id} -> tu utilises l'id de l'élément original comme key
+⚠️ Le key se met sur la balise JSX que tu crées (comme <div>, <li>, etc.), pas dans le nom de l'élément lui-même.
+
+* Le key est un attribut spécial que React utilise pour identifier chaque élément de la liste. Tu le mets toujours sur l'**élément racine** que tu retournes dans le .map(), donc par exemple sur la première <div> qui renvoie ton élément.
+
+Exemple : pour un tableau de produits à acheter, chaque produit, qui est à la base un objet du tableau, devient une <div>, qui contiendra elle-même des <div> ou des <p> qui renverront les éléments du produit.
+
+Exemple :
+```jsx
+{products.map((product) => (
+    <div key={product.id}>
+        <p>{product.name}</p>
+        <p>{product.price}</p>
+    </div>
+))}
+```
+-> Ici, la première <div> = nouvel élément créé à partir de chaque product du tableau products.
+
+
+## Les Hooks :
+Les Hooks permettent :
+* Utiliser davantage de fonctionnalités de React sans recourir aux classes.
+    - Permet d’utiliser un état local, d’avoir un cycle de vie.
+* Extraire la logique d’un composant.
+    - Permet de réutiliser une logique sans devoir modifier la hiérarchie de l’application.
+* Simplifier les composants en les découpant en petites fonctions
+    - Permet d’isoler les codes intrinsèquement liées (abonnement / désabonnement)

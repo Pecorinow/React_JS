@@ -9,6 +9,8 @@ import { Exo2Conditionnel } from './exos/2_Rendu_Conditionnel/Exo2Conditionnel'
 import { Demo3 } from './demos/3_Collections/Demo3'
 import { Exo3 } from './exos/3_Collection/Exo3Collection'
 import { Demo4 } from './demos/4_Events/Demo4Events'
+import { Demo5 } from './demos/5_State/Demo5'
+import { Exo4 } from './exos/4_State/Exo4'
 
 
 
@@ -58,7 +60,7 @@ function App() {
         {/* Sans promo */}
         <Exo2Conditionnel isAvailable= {true} name="Steven" image ="/src/assets/images/steven.png" description="Depuis son arrivée, Steven nous enchante avec sa passion pour la poésie et son talent de comédien. Romantique dans l'âme, il ne dirait pas non à une belle histoire avec une femelle canard si l'occasion se présentait." price="25€"/>
 
-        Avec description et avec promo
+        {/*Avec description et avec promo*/}
         <Exo2Conditionnel isAvailable= {true} name="Arianna Grande" image ="/src/assets/images/arianna-grande.png" description="Pragmatique et la tête bien droite sur ses épaules, Arianna Grande ne recule jamais devant l'effort. Aussi à l'aise pour tenir compagnie aux enfants que pour se battre avec le facteur, elle est une excellente alternative au chien et aux baby-sitters." price="30€" promoPrice="45€"/>
       </div>
 
@@ -69,7 +71,13 @@ function App() {
       {/* <Exo3/> */}
 
 {/* DEMO 4 ------------------------------------------*/}
-      <Demo4/>
+      {/* <Demo4/> */}
+
+{/* DEMO 5 ------------------------------------------*/}
+      <Demo5/>
+
+{/* EXO 4 ------------------------------------------*/}
+      <Exo4/>
       
     </>
   )
