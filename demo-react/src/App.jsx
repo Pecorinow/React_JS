@@ -11,6 +11,9 @@ import { Exo3 } from './exos/3_Collection/Exo3Collection'
 import { Demo4 } from './demos/4_Events/Demo4Events'
 import { Demo5 } from './demos/5_State/Demo5'
 import { Exo4 } from './exos/4_State/Exo4'
+import { Demo6 } from './demos/6_Formulaires/Demo6'
+import { Demo6bis } from './demos/6_Formulaires/Demo6bis'
+import { Demo6Lib } from './demos/6_Formulaires/Demo6Lib'
 
 
 
@@ -78,7 +81,16 @@ function App() {
 
 {/* EXO 4 ------------------------------------------*/}
       <Exo4/>
-      
+
+{/* DEMO 6 ------------------------------------------*/}
+      <Demo6/>
+
+{/* DEMO 6bis ------------------------------------------*/}
+      <Demo6bis/>
+
+{/* DEMO 6Lib ------------------------------------------*/}
+      <Demo6Lib/>
+
     </>
   )
 }

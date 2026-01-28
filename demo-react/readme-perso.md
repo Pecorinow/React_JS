@@ -165,7 +165,7 @@ _Exemple : Demo2.jsx :_
     }
     ```
 
-## Les collections : map() et key :
+## Les Collections : map() et key :
 Pour afficher plusieurs fois la même chose mais n'écrire qu'une seule fois le code, on va utiliser une "boucle"
 Cette boucle sera la méthode .map() des tableaux puisqu'elle permet de transformer chaque élément du tableau en autre chose.
 On va donc s'en servir pour transformer chaque élément du tableau en JSX.
@@ -208,8 +208,67 @@ Exemple :
 ```
 -> Ici, la première <div> = nouvel élément créé à partir de chaque product du tableau products.
 
+> NOTATION :
+> Il y a 3 façons d'écrire un .map() :
+> 1) À la base, on déclarait que ce que contenait le map était une fonction anonyme non-fléchée _fonction(param) {truc que fait la fonction sur le param}_, avec le paramètre "élément du tableau" entre les (), comme ceci :
+> ```jsx
+>     list.map(function(element) { return element.toUpperCase() })
+> ```
+> 2) Mais comme la fonction est de toute façon anu-onyme et n'a pas de nom, on a raccourci :
+> - en écrivant juste le paramètre entre les (),
+> - en ajoutant une flèche, pour faire directement _(param) => {truc que fait la fonction sur le param}_ :
+> ```jsx
+>     list.map((element) => { return element.toUpperCase() })
+> ```
+> 3) Et pour écrire le return :
+> - soit on écrit le return entre {}, comme ici au-dessus,
+> - soit on laisse tomber les {} et le return, et on renvoie directement le résultat de la fonction sur le paramètre element :
+> ```jsx
+>    list.map((element) =>  element.toUpperCase() )
+> ```
+Dans le cas de la _Demo5_ et de l'_Exo4_, c'est la méthode 3 qui a été choisie :
 
-## Les Hooks :
+_Exemple : Exo4 :_
+```jsx
+{products.map((product) =>
+    // -> product = paramètre de la fonction anonyme, qui renvoie tout un élémént JSX entre ().
+    // Pourquoi entre () ? Car la fonction ne peut renvoyer qu'un seul élément, donc on groupe tout le code JSX renvoyé entre () :
+        (
+        <div key={product.id} className="main">
+            <div className="cart">
+                <div className="products">
+                    <p>{product.name}</p>
+                    <p>{product.price}</p>
+                </div>
+                <div className="AddAndRemove">
+                    <button onClick={() => crement(product.id, 1)}>➕</button>
+                    <button>{getCount(product.id)}</button>
+                    <button onClick={() => crement(product.id, -1)}>➖</button>
+                </div>
+                
+            </div>
+        </div>
+    ) // -> Fin de l'élément JSX
+)}
+```
+ATTENTION : le return écrit juste au-dessus du map est écrit selon la méthode 2 :
+```jsx
+    return (
+        <> {/* -> balises vierges, car un return ne peut pas renvoyer une autre fonction directement, donc on met la fonction .map entre balises.  */}
+            {products.map((product) => 
+                 (
+                    <div key={product.id} className="main">
+                        {/* contenu de la <div> */}
+                    </div>
+                )
+            )}
+            <div>Total : {total}</div>
+        </>
+    )
+```
+
+
+## Le State et les Hooks :
 Les Hooks permettent :
 * Utiliser davantage de fonctionnalités de React sans recourir aux classes.
     - Permet d’utiliser un état local, d’avoir un cycle de vie.
@@ -217,3 +276,12 @@ Les Hooks permettent :
     - Permet de réutiliser une logique sans devoir modifier la hiérarchie de l’application.
 * Simplifier les composants en les découpant en petites fonctions
     - Permet d’isoler les codes intrinsèquement liées (abonnement / désabonnement)
+
+useState() :
+Dans quels cas l'utilise-t-on ?
+-> Dès qu'on a une variable dont la valeur va être changée au fil du temps, et que ce sera visible à l'écran.
+
+
+
+## Les Formulaires :
+
