@@ -14,6 +14,8 @@ import { Exo4 } from './exos/4_State/Exo4'
 import { Demo6 } from './demos/6_Formulaires/Demo6'
 import { Demo6bis } from './demos/6_Formulaires/Demo6bis'
 import { Demo6Lib } from './demos/6_Formulaires/Demo6Lib'
+import { Exo5 } from './exos/5_Formulaires/Exo5'
+import { Demo7 } from './demos/7_Interaction/Demo7'
 
 
 
@@ -25,50 +27,50 @@ function App() {
     
     <p>{ new Date().toLocaleDateString('fr') }</p>
 
-      Débat : un remake de la Grande Vadrouille, pour ou contre ? 🛩️🪂
+      {/* Débat : un remake de la Grande Vadrouille, pour ou contre ? 🛩️🪂 */}
 
       {/* Tout ce qui est écrit dans le fichier Demo1Component.jsx sera affiché autant de fois dans la page que Demo1Component sera appelé dans cette page-ci.
       => Si écrit ici 2 fois => affiché dans la page 2 fois ! */}
-{/* 
+
       {/* DEMO 1*/}
-      <Demo1Component name = "ultimate frisbee" type="la pleine conscience en milieu ouvert 🥏" difficulty ="3/5"/>
-      <Demo1Component name ="kayak" type="la survie sur l'eau" difficulty = "5/5"/>
+      {/* <Demo1Component name = "ultimate frisbee" type="la pleine conscience en milieu ouvert 🥏" difficulty ="3/5"/>
+      <Demo1Component name ="kayak" type="la survie sur l'eau" difficulty = "5/5"/> */}
 
 {/* EXO 1 -------------------------------------------*/}
-      <Exo1Component name = "Bernadette Chirac" age = "18" />
+      {/* <Exo1Component name = "Bernadette Chirac" age = "18" /> */}
 
 {/* DEMO 2 ------------------------------------------*/}
 
       {/*Cas 1 : la personne n'a pas d'animal*/}
-      <Demo2 owner="Bernadette Chirac" havePet={false}/>
+      {/* <Demo2 owner="Bernadette Chirac" havePet={false}/> */}
 
       {/*Cas 2 : la personne a toutes les infos*/}
-      <Demo2 owner = "Micheline de la compta" havePet = {true} name ="Princesse Papillon de Lumière" type="chien" image="https://3.bp.blogspot.com/-bh-rgMEFlMU/UsaNkyMhHrI/AAAAAAAAC9U/HnEXoKwVYec/s1600/dog3.jpg"/>
+      {/* <Demo2 owner = "Micheline de la compta" havePet = {true} name ="Princesse Papillon de Lumière" type="chien" image="https://3.bp.blogspot.com/-bh-rgMEFlMU/UsaNkyMhHrI/AAAAAAAAC9U/HnEXoKwVYec/s1600/dog3.jpg"/> */}
 
       {/*Cas 3 : l'animal n'a pas de nom*/}
-      <Demo2 owner="Jonhatan Cohen" havePet={true} type="chat" image="https://i0.wp.com/thediscerningcat.com/wp-content/uploads/2020/12/devon-rex-with-dark-face.jpg?fit=1200%2C800&ssl=1"/>
+      {/* <Demo2 owner="Jonhatan Cohen" havePet={true} type="chat" image="https://i0.wp.com/thediscerningcat.com/wp-content/uploads/2020/12/devon-rex-with-dark-face.jpg?fit=1200%2C800&ssl=1"/> */}
 
       {/*Cas 4 : l'animal n'a pas d'image'*/}
-      <Demo2 owner="Das, Ju-Das" havePet={true} type="chat" name="Satan"/>
+      {/* <Demo2 owner="Das, Ju-Das" havePet={true} type="chat" name="Satan"/> */}
 
 {/* EXO2 ------------------------------------------- */}
       
-      <div className="Exo2">
+      {/* <div className="Exo2"> */}
         {/* Indisponible */}
-        <Exo2Conditionnel isAvailable= {false} name="Christine" image ="/src/assets/images/christine.png" description="Christine est un canard mignon tout ce qu'il y a de plus banal, mais attention, ses plumes blanches cachent une personnalité profonde et complexe." price="" promoPrice=""/>
+        {/* <Exo2Conditionnel isAvailable= {false} name="Christine" image ="/src/assets/images/christine.png" description="Christine est un canard mignon tout ce qu'il y a de plus banal, mais attention, ses plumes blanches cachent une personnalité profonde et complexe." price="" promoPrice=""/> */}
 
         {/* Sans description et sans promo */}
-        <Exo2Conditionnel isAvailable= {true} name="Jean-Ralphio" image ="/src/assets/images/jean-ralphio.png" price="35€"/>
+        {/* <Exo2Conditionnel isAvailable= {true} name="Jean-Ralphio" image ="/src/assets/images/jean-ralphio.png" price="35€"/> */}
 
         {/* Sans promo */}
-        <Exo2Conditionnel isAvailable= {true} name="Steven" image ="/src/assets/images/steven.png" description="Depuis son arrivée, Steven nous enchante avec sa passion pour la poésie et son talent de comédien. Romantique dans l'âme, il ne dirait pas non à une belle histoire avec une femelle canard si l'occasion se présentait." price="25€"/>
+        {/* <Exo2Conditionnel isAvailable= {true} name="Steven" image ="/src/assets/images/steven.png" description="Depuis son arrivée, Steven nous enchante avec sa passion pour la poésie et son talent de comédien. Romantique dans l'âme, il ne dirait pas non à une belle histoire avec une femelle canard si l'occasion se présentait." price="25€"/> */}
 
         {/*Avec description et avec promo*/}
-        <Exo2Conditionnel isAvailable= {true} name="Arianna Grande" image ="/src/assets/images/arianna-grande.png" description="Pragmatique et la tête bien droite sur ses épaules, Arianna Grande ne recule jamais devant l'effort. Aussi à l'aise pour tenir compagnie aux enfants que pour se battre avec le facteur, elle est une excellente alternative au chien et aux baby-sitters." price="30€" promoPrice="45€"/>
-      </div>
+        {/* <Exo2Conditionnel isAvailable= {true} name="Arianna Grande" image ="/src/assets/images/arianna-grande.png" description="Pragmatique et la tête bien droite sur ses épaules, Arianna Grande ne recule jamais devant l'effort. Aussi à l'aise pour tenir compagnie aux enfants que pour se battre avec le facteur, elle est une excellente alternative au chien et aux baby-sitters." price="30€" promoPrice="45€"/> */}
+      {/* </div> */}
 
 {/* DEMO 3 ------------------------------------------*/}
-      <Demo3/>
+      {/* <Demo3/> */}
 
 {/* EXO 3 ------------------------------------------*/}
       {/* <Exo3/> */}
@@ -77,19 +79,25 @@ function App() {
       {/* <Demo4/> */}
 
 {/* DEMO 5 ------------------------------------------*/}
-      <Demo5/>
+      {/* <Demo5/> */}
 
 {/* EXO 4 ------------------------------------------*/}
-      <Exo4/>
+      {/* <Exo4/> */}
 
 {/* DEMO 6 ------------------------------------------*/}
-      <Demo6/>
+      {/* <Demo6/> */}
 
 {/* DEMO 6bis ------------------------------------------*/}
-      <Demo6bis/>
+      {/* <Demo6bis/> */}
 
-{/* DEMO 6Lib ------------------------------------------*/}
-      <Demo6Lib/>
+{/* DEMO 6 Lib ------------------------------------------*/}
+      {/* <Demo6Lib/> */}
+
+{/*  EXO 5 ------------------------------------------*/}
+      {/* <Exo5/> */}
+
+{/* DEMO 7 ------------------------------------------*/}
+      <Demo7/>
 
     </>
   )

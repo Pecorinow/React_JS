@@ -49,7 +49,7 @@ export const Demo6bis = () => {
         event.preventDefault(); // = empêche le rechargement automatique de la page par le submit.
         setTotalPerPerson(undefined); // = remet le total à 0 quand on clique sur le submit.
 
-        // Ce qui se passe sous conditions :
+        // Ce qui se passe en cas d'erreur ou de réussite :
         if(splitForm.bill > 0 && splitForm.nbPerson > 0) {
             // Si tout va bien, donc que l'addition est supérieure à 0, et que le nombre de personnes est supérieur à 0 :
             setTotalPerPerson( (splitForm.bill + (splitForm.bill * splitForm.tips/100)) / splitForm.nbPerson);

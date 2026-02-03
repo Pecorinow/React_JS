@@ -6,7 +6,8 @@ export const Demo6 = () => {
 //* 👉 OPTION 1 : Un state pour chaque donnée du formulaire
 // Pour pouvoir relier un state avec un champs, on rajoute 2 choses sur le champs :
     // * L'attibut value : pour lier le champs à notre state value={nomState}
-    // * L'évènement on Change : onChange={ (event) => fonctionDeMiseAJour(event.target.value)}
+    // * L'évènement onChange : onChange={ (event) => fonctionDeMiseAJour(event.target.value)}
+        // = écrire dans le champs (= onChange) déclenche un event qui met à jour la valeur contenue dans l'input.
         // event.target.value : récupère la valeur de l'élément HTML qui déclenche l'évènement.
         // event = l'évènement déclenché, target = cible l'élément HTML qui le déclenche (dans ce cas-ci, des inputs ou des selects).
 
@@ -28,7 +29,7 @@ const handleSubmit = (event) => {
     event.preventDefault(); // = empêche le rechargement automatique de la page par le submit.
     setTotalPerPerson(undefined); // = remet le total à 0 quand on clique sur le submit.
 
-    // Ce qui se passe sous conditions :
+    // Ce qui se passe Ce qui se passe en cas d'erreur ou de réussite :
     if(bill > 0 && nbPerson > 0) {
         // Si tout va bien, donc que l'addition est supérieure à 0, et que le nombre de personnes est supérieur à 0 :
         setTotalPerPerson( (bill + (bill * tips/100)) / nbPerson);
@@ -74,7 +75,7 @@ const handleSubmit = (event) => {
                 </form>
 
                 {totalPerPerson &&
-                <div>Vous devez chacun·e :</div>
+                <div>Vous devez chacun·e :{totalPerPerson.toFixed(2)} </div>
                 }
         </div>
     )
