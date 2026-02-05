@@ -41,7 +41,7 @@ export const Demo5 = () => {
             <h2>La gestion du State :</h2>
             <div className="flex flex-row justify-center items-center">
                 <button onClick={() => crement(1)}>➖</button>
-                    {/* ATTENTION : toujours mettre une fonction anonyme (vide) avant notre fonction avec paramètres (crement), pour éviter de lancer une fonction "infinie" où le rendu se régénère => ça déclenche la fonction => le rendu se régénère => ça déclenche la fonction => ... */}
+                    {/* ATTENTION : toujours mettre une FONCTION ANONYME (vide) avant notre fonction avec paramètres (crement()), pour éviter de lancer une fonction "infinie" où le rendu se régénère => ça déclenche la fonction => le rendu se régénère => ça déclenche la fonction => ... */}
                 <button>{count}</button>
                 <button onClick={() => crement(-1)}>➕</button>
 

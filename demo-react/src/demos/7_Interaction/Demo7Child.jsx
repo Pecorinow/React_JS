@@ -2,7 +2,7 @@ export const Demo7Child = (props) => {
 
     const {child, onWantedReveal} = props;
     // child = descendant -> on a réçu cette info du parent
-    // onWantedReveal = montant -> on a reçu cette ofnction à déclencher via l eparent, mais on va la déclencher ici.
+    // onWantedReveal = montant -> on a reçu cette fonction à déclencher via le parent, mais on va la déclencher ici.
     const {id, name, skill, wanted} = child;
 
     return (

@@ -5,7 +5,7 @@ import style from "./Exo5.module.css";
 
 export const Exo5 = () => {
     //*------------------------------------------
-    //* Vréation du state pour le résultat final :
+    //* Création du state pour le résultat final :
     const [result, setResult] = useState();
     // = state et fonction de màj du state seulement pour le champs du résultat final.
 

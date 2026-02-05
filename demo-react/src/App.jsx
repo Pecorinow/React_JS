@@ -16,6 +16,9 @@ import { Demo6bis } from './demos/6_Formulaires/Demo6bis'
 import { Demo6Lib } from './demos/6_Formulaires/Demo6Lib'
 import { Exo5 } from './exos/5_Formulaires/Exo5'
 import { Demo7 } from './demos/7_Interaction/Demo7'
+import { Exo6 } from './exos/6_Interaction/Exo6'
+import { LaVie } from './demos/8_CycleDeVie/LaVie'
+import { Exo7 } from './exos/7_CycleDeVie/Exo7'
 
 
 
@@ -97,7 +100,16 @@ function App() {
       {/* <Exo5/> */}
 
 {/* DEMO 7 ------------------------------------------*/}
-      <Demo7/>
+      {/* <Demo7/> */}
+
+{/*  EXO 6 ------------------------------------------*/}
+      {/* <Exo6/> */}
+      {/* TODO PORTFOLIO à refaire en plus beau ! */}
+
+{/* DEMO 8 ------------------------------------------*/}
+      {/* <LaVie/> */}
+
+      <Exo7 />
 
     </>
   )

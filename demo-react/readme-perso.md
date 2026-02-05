@@ -269,6 +269,8 @@ ATTENTION : le return écrit juste au-dessus du map est écrit selon la méthode
 
 
 ## Le State et les Hooks :
+Voir Demo4
+
 Les Hooks permettent :
 * Utiliser davantage de fonctionnalités de React sans recourir aux classes.
     - Permet d’utiliser un état local, d’avoir un cycle de vie.
@@ -284,4 +286,134 @@ Dans quels cas l'utilise-t-on ?
 
 
 ## Les Formulaires :
+Voir Demo6
+
+
+## Interactions :
+Voir Demo7.
+
+Dès qu'un composant B se trouve dans un autre composant A, il devient l'ENFANT de ce composant A !
+
+La communication, qu'elle soit descendant ou ascendante, se fera toujours via les props : 
+- Comunicaton Parent -> Enfant : via les **props classiques**.
+    -> Une info contenue dans le Parent est envoyée dans l'Enfant pour être utilisée.
+- Communication Enfant -> Parent : grâce à une **fonction callback** contenue dans une variable qui commence par 'on', via les props
+    -> Une fonction créée dans le Parent est envoyée dans l'Enfant via les props.
+    -> Un event dans l'Enfant déclenche cette fonction dans le return.
+    -> Le Parent retourne la ComposantEnfant et son event.
+
+
+_Exemple ComposantParent.jsx :_
+
+```jsx
+export const ComposantParent = () => {
+    const donnéeAEnvoyer = "NomDuParent";
+
+    const fonctionALancer = (param?) => {};
+        // = fonction callback, avec ou sans paramètre.
+        // Dans la Demo7, le paramètre est l'id de l'enfant.
+
+    return (
+        <ComposantEnfant
+        // PROPS :
+        nomParent = {donnéeAEnvoyer}
+            // nomParent = props classique, envoyée à ComposantEnfant.
+        onEnfantParle={fonctionALancer}/>
+            // onEnfantParle = variable qui reçoit la fonction callback, envoyée à ComposantEnfant, qui contient l'event qui la déclenchera. 
+            // Quand l'event est déclenché dans le ComposantEnfant => l'info remonte au ComposantParent via la props onEnfantParle, qui contient la fonction à déclencher.
+            // => fonctionALancer est alors lancée dans le ComposantParent.
+    )
+}
+
+```
+_Exemple ComposantEnfant.jsx :_
+
+```jsx
+export constComposantEnfant = (props) => {
+    const {nomParent, onEnfantParle} = props;
+        // nomParent = props envoyée depuis ComposantParent.
+        // onEnfantParle = variable qui contient la fonction à déclencher.
+
+    return (
+        <div> Mon parent s'appelle {nomParent}</div>
+        <button onClick={() => onEnfantParle(param?)}>
+            Click me !
+        </button>
+            // onClick = event qui déclenche la fonction.
+            // onClick={() => onEnfantParle(param?)} = Quand l'event est déclenché dans le ComposantEnfant, l'info remonte au ComposantParent via la props onEnfantParle.
+            // => la fonctionALancer est alors lancée dans le ComposantParent.
+    )
+}
+
+```
+
+## Cycle de Vie :
+_Voir Demo8_
+
+Les composants on une vie et une mort.
+* Vie = quand ils apparaissent à l'écran ( = naissance),
+* Mort = quand ils disparaissent de l'écran.
+
+Cette vie et mort est gérée par une un hook **useEffect()**.
+
+### Les trois cas de dépendances dans useEffect
+
+#### 1. **Avec dépendance `[valeur]`** 
+
+```javascript
+useEffect(() => {
+    console.log('Je me déclenche !');
+}, [anniversaires])
+```
+
+**Quand ça se déclenche :**
+- Au premier rendu (montage du composant)
+- **À chaque fois que `anniversaires` change**
+
+**Exemple :** Si vous cliquez 5 fois sur le bouton, le useEffect se déclenchera 6 fois au total (1 au départ + 5 fois pour chaque changement).
+
+---
+
+#### 2. **Avec dépendance vide `[]`**
+
+```javascript
+useEffect(() => {
+    console.log('Je me déclenche une seule fois !');
+}, [])
+```
+
+**Quand ça se déclenche :**
+- **Uniquement au premier rendu** (montage du composant)
+- Plus jamais après, même si d'autres états changent
+
+**Cas d'usage typique :** Charger des données depuis une API au démarrage, initialiser quelque chose une seule fois.
+
+---
+
+#### 3. **Sans dépendance (pas de tableau)**
+
+```javascript
+useEffect(() => {
+    console.log('Je me déclenche tout le temps !');
+})
+```
+
+**Quand ça se déclenche :**
+- Au premier rendu
+- **À chaque re-rendu du composant** (peu importe quel état change)
+
+**Attention ⚠️** C'est rarement ce qu'on veut ! Si votre useEffect modifie un état, ça créera une boucle infinie :
+- Le useEffect change un état → provoque un re-rendu → le useEffect se relance → change l'état → etc.
+
+---
+
+### Résumé visuel
+
+| Syntaxe | Déclenchement |
+|---------|---------------|
+| `useEffect(() => {...}, [valeur])` | 1er rendu + quand `valeur` change |
+| `useEffect(() => {...}, [])` | 1er rendu uniquement |
+| `useEffect(() => {...})` | À chaque rendu (dangereux !) |
+
+Dans votre exemple, `[anniversaires]` fait que le useEffect "écoute" les anniversaires et réagit à chaque nouveau clic sur le bouton !
 

@@ -118,6 +118,8 @@ export const Exo4 = () => {
                                 <button onClick={() => crement(product.id, 1)}>➕</button>
                                 <button>{getCount(product.id)}</button>
                                 <button onClick={() => crement(product.id, -1)}>➖</button>
+
+                                {/* ATTENTION : toujours mettre une FONCTION ANONYME (vide) avant notre fonction avec paramètres (crement()), pour éviter de lancer une fonction "infinie" où le rendu se régénère => ça déclenche la fonction => le rendu se régénère => ça déclenche la fonction => ... */}
                             </div>
                             
                         </div>
