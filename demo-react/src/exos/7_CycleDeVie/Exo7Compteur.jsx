@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+
+
 export const Exo7Compteur = (props) => {
     const { tree } = props;
     const { id, name } = tree;
