@@ -6,11 +6,16 @@ export const Exo7Compteur = (props) => {
     const { tree } = props;
     const { id, name } = tree;
 
-    //todo compteur - +    (rappel Demo5 et !Exo4!)
-    // il faut 3 choses :
-    // 1) un state pour chaque compteur
-    // 2) une fonction d'incrémentation pour chaque compteur
-    // 3) Une fonction pour savoir quel compteur afficher dans le composant
+    //Étapes :
+    // 1) State pour modifier la valeur des compteurs
+    // 2) useEffect pour sauver le compteur en localStorage quand le composant sera mort (= en isVisible : false)
+    // 3) useEffect pour réafficher la valeur du count quand le composant naît (= en isVisible : true)
+
+    // ! useState : -> créer des variables qui vont être amenées à être modifiées, eventuellement dans unse Effect mais pas nécessairement.
+    //! useEffect -> créer un effet lorsque les valeurs renseignées viennent à être modifiées. Se fait en 2 étapes :
+        // un effet = une fonction
+        // les valeurs modifiées = les dépendances []
+    
 
     //* State pour les compteurs :
     const [count, setCount] = useState();
@@ -22,18 +27,16 @@ export const Exo7Compteur = (props) => {
 
     }
 
-    //todo 
-    //useEffect sauver en localStorage compteur quand modifié
+    //* useEffect : sauver en localStorage le compteur quand modifié
     useEffect(() =>{
         if(!isNaN(count)){
             localStorage.setItem(name, count)
-                //* Ici, je peux utiliser count même si je l'ai en dépendance, car je l'utilise mais ne le modifie pa savec setCount !
+                // Ici, je peux utiliser count même si je l'ai en dépendance, car je l'utilise mais ne le modifie pa savec setCount !
         }
     }, [count])
 
 
-    //todo
-    //useEffect qui récupère la valeur du localStorage pour mettre dans compteur quand composant "nait"
+    //* useEffect qui récupère la valeur du localStorage pour mettre dans count quand le composant "nait"
     
     useEffect(() => {
         const savedCount = localStorage.getItem(name)
@@ -48,8 +51,10 @@ export const Exo7Compteur = (props) => {
                 // }
 
         // Version short :
-        setCount(+savedCount)
+        setCount(+savedCount);
             // Le localStorage n'enregistre que des strings => On rajoute un + pour tranformer le savedCount en number et éviter la concaténation.
+            // Ne fonctionne qu'avec + et number, maius pas avec parseInt et parseFloat.
+            // + et Number transforment automatiquement toutes les valeurs null en 0 => pas besoin de la version longue au-dessus.
     }, [])
 
 

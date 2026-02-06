@@ -165,9 +165,11 @@ _Exemple : Demo2.jsx :_
     }
     ```
 
-## Les Collections : map() et key :
+## Les Collections : map() et key={} :
 Pour afficher plusieurs fois la même chose mais n'écrire qu'une seule fois le code, on va utiliser une "boucle"
-Cette boucle sera la méthode .map() des tableaux puisqu'elle permet de transformer chaque élément du tableau en autre chose.
+Cette boucle sera la méthode **.map()** des tableaux puisqu'elle permet de :
+- **parcourir** chaque élément d'un tableau (comme un forEach) ;
+- **transformer** chaque élément de ce tableau en autre chose.
 On va donc s'en servir pour transformer chaque élément du tableau en JSX.
 
 📢 Quand on affiche des collections (lists), on va devoir ajouter une clef unique sur chaque élément construit pour des questions d'optimisation. Cette clef doit être associée à une valeur unique (idéalement un id, mais si on n'en a pas, l'indice dans le tableau fait l'affaire). Cela se fait avec un **attribut key={valeur}**.
@@ -286,11 +288,11 @@ Dans quels cas l'utilise-t-on ?
 
 
 ## Les Formulaires :
-Voir Demo6
+_Voir Demo6_
 
 
 ## Interactions :
-Voir Demo7.
+_Voir Demo7._
 
 Dès qu'un composant B se trouve dans un autre composant A, il devient l'ENFANT de ce composant A !
 
@@ -348,13 +350,42 @@ export constComposantEnfant = (props) => {
 ```
 
 ## Cycle de Vie :
-_Voir Demo8_
+_Voir Demo8 et Exo7_
 
-Les composants on une vie et une mort.
+Les composants ont une vie et une mort.
 * Vie = quand ils apparaissent à l'écran ( = naissance),
 * Mort = quand ils disparaissent de l'écran.
 
 Cette vie et mort est gérée par une un hook **useEffect()**.
+
+**useState** : -> créer des variables qui vont être amenées à être modifiées, eventuellement dans useEffect(), mais pas nécessairement.
+-> Crée la variable ET la fonction pour modifier la valeur dans la variable.
+
+**useEffect** -> déclencher un effet :
+- lorsque les valeurs renseignées dans les dépendances viennent à être modifiées (state ou props). 
+- lorsque le composant apparaît à l'écran.
+- lorsque le composnat disparaît de l'écran (pour annuler une requête, pour cleaner un timer...).
+
+Le useEffect() se fait en 2 étapes :
+- un effet = une fonction
+- les valeurs modifiées = les dépendances []
+🚨 Dans cette fonction, si on renvoie _une autre fonction_, ce sera celle qui sera exécutée _à la 'mort' du composant_.
+
+Exemple : cas avec dépendance :
+```jsx
+useEffect(() => {
+    console.log('Je me déclenche !');
+        // = Effet qui se déclenche lorsque la dépendance est modifiée
+
+    return () => {
+        console.log('Je m\'arrête');
+    }
+        // = Fonction qui se déclenche à la mort du composant
+
+}, [élémentDéclencheur])
+    // = Dépendance = variable  qui, lorsqu'elle est modifiée, déclenche l'effet.
+```
+
 
 ### Les trois cas de dépendances dans useEffect
 
@@ -417,3 +448,41 @@ useEffect(() => {
 
 Dans votre exemple, `[anniversaires]` fait que le useEffect "écoute" les anniversaires et réagit à chaque nouveau clic sur le bouton !
 
+
+### localSotorage :
+Le localStorage est une sorte de DB dans notre navigateur qui existe uniquement en local, sur notre machine.
+On peut y stocker des données momentannées.
+-> Ex :
+- sur un site de vente où notre panier n'est sauvegardé que sur notre machine.
+- Les cookies qui stockent certaines infos sur notre comportement en ligne.
+
+* Pour **stocker** des infos dans le localStorage :
+
+    ```jsx
+    localStorage.setItem(id, infoAStocker)
+    ```
+    Attention, ici on a mis un id, mais ça peut aussi être un name, ou n'importe quelle propriété qui permette de retrouver précisément l'élément à stocker.
+
+    _Ex : Exo7Compteur :_
+    ```jsx
+    useEffect(() =>{
+            if(!isNaN(count)){
+                localStorage.setItem(name, count)
+            }
+        }, [count])
+    ```
+    Ici, on a mis name, car name est connu via les props, et c'est plus facile à lire dans le navigateur avec un name qu'avec un id.
+
+* Pour **récupérer** des infos dans le localStorage :
+     ```jsx
+    localStorage.setItem(id, infoAStocker)
+    ```
+    _Ex : Exo7Compteur :_
+    ```jsx
+    useEffect(() => {
+        const savedCount = localStorage.getItem(name)
+        console.log(savedCount);
+    
+        setCount(+savedCount)
+    }, [])
+    ```
