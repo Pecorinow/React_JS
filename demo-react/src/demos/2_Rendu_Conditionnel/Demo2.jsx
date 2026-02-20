@@ -1,4 +1,5 @@
 import style from './Demo2.module.css';
+ 
 
 export const Demo2 = (props) => {
     const {owner, havePet, name, image, type} = props;
