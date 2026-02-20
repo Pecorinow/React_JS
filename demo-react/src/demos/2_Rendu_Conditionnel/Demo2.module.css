@@ -1,0 +1,34 @@
+.pet {
+    background-color :aqua;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow : rgb(25, 148, 148) 0 3px 8px;
+
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noPet {
+    background-color : lightsalmon;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow : rgb(219, 112, 70) 0 3px 8px;
+}
+
+.dog {
+    background : url('/src/assets/images/dog.webp');
+}
+
+.cat {
+    background : url('/src/assets/images/cat.webp');
+}
+
+.inside {
+    width : 100%;
+    background-color :aliceblue;
+    border-radius: 1rem;
+    padding : 1rem;
+}

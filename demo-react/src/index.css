@@ -1,0 +1,43 @@
+.grey-text {
+  color: lightgreen;
+  font-weight: lighter;
+}
+
+.grey-background {
+    background-color: grey;
+}
+
+
+.Exo2 {
+  background : linear-gradient(rgb(203, 252, 235), rgb(118, 197, 169));
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.gap-3 {
+    gap : 3rem;
+}

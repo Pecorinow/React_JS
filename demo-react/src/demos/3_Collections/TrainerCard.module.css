@@ -1,0 +1,43 @@
+.card {
+    width: 25%;
+    aspect-ratio: 3/4;
+    box-shadow: rgba(0,0,0, 0.24) 0px 3px 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items : center;
+    gap: 2rem;
+
+    padding : 1rem;
+
+    ul {
+        padding-left: 1rem;
+    }
+}
+
+hobbies {
+    height : 40%;
+    p {
+        margin-bottom:0.5rem;
+    }
+    
+}
+
+.male {
+    h3 {
+        color : fuchsia;
+    }
+}
+
+.female {
+    h3 {
+        color:darkolivegreen
+    }
+}
+
+.other {
+    h3 {
+        color:orange;
+    }
+}

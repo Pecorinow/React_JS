@@ -1,0 +1,42 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+}
+
+.main-border {
+    display :flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: flex-start;
+
+    border-radius : 1rem;
+    margin : 1rem;
+    padding : 1rem;
+    background-color: rgb(203, 252, 235);
+    
+    border: 2px solid rgb(66, 172, 119);
+    width: 300px;
+    height : 500px;
+
+    .props {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        background-color: rgb(203, 252, 235);
+        
+        img {
+            height : 200px;
+        }
+
+        .promo {
+            font-weight: bold;
+            color: red;
+        }
+    }
+
+    .propImage {
+        height: 200px;
+    }
+}

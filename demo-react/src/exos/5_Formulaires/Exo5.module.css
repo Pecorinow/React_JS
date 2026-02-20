@@ -1,0 +1,46 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    height : 100vh;
+    background-color: linear-gradient(90deg, #d9ed92, #184e77);
+    
+    .container {
+        display : flex;
+        flex-direction :column;
+        justify-content : center;
+        align-items: center;
+        gap : 3rem;
+        padding : 0.5rem;
+        width: 800px;
+        background-color: #99d98c;
+        border-radius: 1rem;
+
+        form {
+            display : flex;
+            flex-direction : row;
+            justify-content: center;
+            align-items : center;
+            gap : 1rem;
+            padding : 3rem;
+
+            div {
+                input {
+                    border-radius : 2rem;
+                }
+                select {
+                    border-radius : 2rem;
+                }
+            }
+
+            button {
+                border-radius : 1rem;
+                background-color: #99d98c;
+                border :#184e77;
+            }
+        }
+    }
+}
