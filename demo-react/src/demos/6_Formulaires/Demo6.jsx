@@ -3,13 +3,13 @@ import { useState } from "react";
 export const Demo6 = () => {
 // Pour gérer les fomrulaires nativement en Ract avec la state, 2 options :
 
-//* 👉 OPTION 1 : Un state pour chaque donnée du formulaire
+// * 👉 OPTION 1 : Un state pour chaque donnée du formulaire
 // Pour pouvoir relier un state avec un champs, on rajoute 2 choses sur le champs :
-    // * L'attibut value : pour lier le champs à notre state value={nomState}
-    // * L'évènement onChange : onChange={ (event) => fonctionDeMiseAJour(event.target.value)}
-        // = écrire dans le champs (= onChange) déclenche un event qui met à jour la valeur contenue dans l'input.
-        // event.target.value : récupère la valeur de l'élément HTML qui déclenche l'évènement.
-        // event = l'évènement déclenché, target = cible l'élément HTML qui le déclenche (dans ce cas-ci, des inputs ou des selects).
+//     * L'attibut value : pour lier le champs à notre state value={nomState}
+//     * L'évènement onChange : onChange={ (event) => fonctionDeMiseAJour(event.target.value)}
+//         = écrire dans le champs (= onChange) déclenche un event qui met à jour la valeur contenue dans l'input.
+//         event.target.value : récupère la valeur de l'élément HTML qui déclenche l'évènement.
+//         event = l'évènement déclenché, target = cible l'élément HTML qui le déclenche (dans ce cas-ci, des inputs ou des selects).
 
 const [bill, setBill] = useState(0); // -> 0 = valeur par défaut qui sera affichée, afin d'éviter un warning inutile "Attention il n'y a pas de valeur gnagnagna"
 const [nbPerson, setNbPerson] = useState(0);
@@ -18,7 +18,7 @@ const [isValid, setIsValid] = useState(true); // -> évite un message d'erreur p
 
 const [totalPerPerson, setTotalPerPerson] = useState();
 
-//* 👉 OPTION 2 : Un state de type objet qui représente tout le formulaire
+// * 👉 OPTION 2 : Un state de type objet qui représente tout le formulaire
 // Voir Demo6bis
 
 //----- ✅ Gestion du submit :------

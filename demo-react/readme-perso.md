@@ -44,6 +44,16 @@ Quand c'est fait -> suivre le lien localhost -> Arrive sur une page Vite + React
 
 #### Racine du projet :
 
+📁 node_modules\
+📁 public\
+📁 src\
+📄 .gitignore\
+📄 index.html\
+📄 package-lock.json\
+📄 package.json\
+📄 vite.config.js
+
+> * **node_modules** → c'est le dossier où se trouve les dépendances du projet récupérées via le package.json et les commandes pour lancer le projet.
 > * **public** : dossier qu rend accessible les fichiers, utilisé po rles medias (images, vidéos, son..)
 > * **src** : dossier source, où se trouve notre application et où on va surtou travailler.
 > * **gitignore** :
@@ -94,6 +104,29 @@ Attention : Il est OBLIGATOIRE de toujours écrire le nom du composant avec une 
 
 Note : au lieu de faire directement des fonctions, on va créer des constantes avec des fonctions dedans.
 
+### Le paramètre d'entrée : les props 
+
+Notre composant peut **recevoir** des informations envoyées lors de son utilisation.
+Pour cela, lors du l'utilisation, nous devrons écrire :
+```jsx
+    <NomComposant nomProp1="uneChaine" nomProp2={42} />
+```
+
+Dans le composant, nous allons récupérer dans les paramètres du composant, un **objet props**, dans lequel se trouvera tout ce qui a été envoyé précédemment.
+```jsx
+    export const NomComposant = (props) => {
+        // Pour extraire ce qu'on veut des props
+        // Pour mettre une valeur par défaut à notre prop, on lui assigne une valeur avec un =
+        const { nomProp1, nomProp2 = 0 } = props;
+
+        return (
+            <>
+                <p> Pour afficher la valeur d'une prop : { nomProp1 }</p>
+            </>
+        )
+    }
+```
+
 ## Style du composant :
 
 Composants CSS : Par défaut, c'est le fichier index.css qui s'applique, sauf si on crée un autre fichier CSS qui aura alors priorité dessus.
@@ -111,8 +144,32 @@ Les classes qui viennent du module s'écrivent différemment :
 
 ## Rendu conditionnel :
 
+* 1e type de rendu conditionnel : Le **if** n'est utilisable qu'**en dehors du rendu (return ())**. Il sert donc à générer un rendu différent en fonction de notre condition.\
+_exemple :_
+    ```jsx
+        export const NomComposant = (props) => {
+            const { isError } = props;
+
+            if(isError){
+                return (
+                    <> 
+                        Une erreur est survenue 🤖
+                    </>
+                )
+            }
+
+            return (
+                <> 
+                    Pas d'erreur, tout roule 🛞
+                </>
+            )
+        }
+    ```
+
 * 2e type de conditionnelle : la **ternaire** : on peut la faire directement dans le rendu pour ajoute une classe ou l'autre, ou pour afficher un contenu ou l'autre :
 ```jsx
+import style from './NomComposant.module.css';
+
 export const NomComposant = (props) => {
     const {color} = props;
 
@@ -289,6 +346,77 @@ Dans quels cas l'utilise-t-on ?
 
 ## Les Formulaires :
 _Voir Demo6_
+
+Pour gérer les fomrulaires nativement en Ract avec la state, 2 options :
+
+* 👉 OPTION 1 : Un state pour chaque donnée du formulaire
+Pour pouvoir relier un state avec un champs, on rajoute 2 choses sur le champs :
+    * L'attibut value : pour lier le champs à notre state value={nomState}
+    * L'évènement onChange : onChange={ (event) => fonctionDeMiseAJour(event.target.value)}
+        = écrire dans le champs (= onChange) déclenche un event qui met à jour la valeur contenue dans l'input.
+        event.target.value : récupère la valeur de l'élément HTML qui déclenche l'évènement.
+        event = l'évènement déclenché, target = cible l'élément HTML qui le déclenche (dans ce cas-ci, des inputs ou des selects).
+```jsx
+const [bill, setBill] = useState(0); // -> 0 = valeur par défaut qui sera affichée, afin d'éviter un warning inutile "Attention il n'y a pas de valeur gnagnagna"
+const [nbPerson, setNbPerson] = useState(0);
+const [tip, setTips] = useState(5); //-> 5 = valeur par défaut qui sera écrite dans la page.
+const [isValid, setIsValid] = useState(true); // -> évite un message d'erreur par défaut.
+
+const [totalPerPerson, setTotalPerPerson] = useState();
+```
+
+* 👉 OPTION 2 : Un state de type objet qui représente tout le formulaire :
+```jsx
+const [splitForm, setSplitForm] = useState ( {
+        bill :0, // -> valeurs par défaut affichée dans la page.
+        nbPerson : 0,
+        tips : 5
+    });
+
+    const [isValid, setIsValid] = useState(true);
+    const [totalPerPerson, setTotalPerPerson] = useState();
+```
+
+
+* 👉 OPTION 3 : Gestion du formulaire avec la librairie React-Hook-Form :
+On va utiliser la librairie React-Hook-Form
+https://react-hook-form.com/
+
+Pour l'importer, taper dans la console :
+npm i react-hook-form
+
+```jsx
+//* Création d'un state pour le résultat final :
+    const [totalPerPerson, setTotalPerPerson] = useState();
+    // = state et fonction de màj du state seulement pour le champs du résultat final (= total à payer par personne) >< Demo6 où chaque champ avait un state.
+
+    const {register, handleSubmit, formState : {errors}} = useForm( {
+        mode : 'onChange', 
+        defaultValues : {bill : 0, nbPerson : 0,tips : 5}
+        // Dans les paramètres de useForm, on peut mettre un objet avec des options :
+        // * mode : permet de changer le mode de détection des erreurs du formulaire
+        // * defaultValues permet de mettre des valeurs de base dans le formulaire, il faudra respecter le nom mis dans register
+    } );
+
+```
+
+* **Création du useForm** :
+Grâce à React Hook-Form, on a accès à une nouvelle Hook appelée useForm, de laquelle on va extraire plusieurs choses :
+* - 👉 register 
+    -> permet d' "enregistrer un nouveau champs", depuis la balise de ce champs dans le return JSX
+    Il fait le value={state} + onChange{fonctionPourChangerLeState} pour nous.
+    Ex : <input id="bill" name="bill" type ="number" {...register('bill', {valueAsNumber : true, required : true, min : 10})}/>
+* - 👉 handleSubmit
+    -> Fonction qui fait le preventDefault et qui nous renvoie le state qu'elle a fabriqué.
+    Elle prend 2 fonctions en paramètres : celle exécutée en cas de formulaire valide, et celle en cas de formulaire non-valide.
+    Si valide, elle formate les données de chaque champs sous forme d'objets {nom + valeur} dans 'data'.
+    On l'a écrite à la main dans la Demo6bis, mais ici elle est importée directement depuis React Hook Form.
+* - 👉 formState
+    -> l'état du formulaire.
+    De formState, on va récupérer {errors}, écrit dans le formulaitre JSX, qui contient toutes les erreurs actuelles du formulaire (champs vides, mal remplis...), et fait apparaître un message d'erreur si nécessaire :
+    Ex : { errors['bill']?.type === 'min' && <span>Vous devez indiquer une valeur minumum de 10.</span> }
+* - 👉 reset
+    -> Une fonction pour remettre à 0 (ou avec les defaultValues) le formulaire
 
 
 ## Interactions :
@@ -489,3 +617,7 @@ On peut y stocker des données momentannées.
         setCount(+savedCount)
     }, [])
     ```
+
+## API
+_Voir démo 9_
+
